@@ -78,31 +78,36 @@ public class ScoreBoardTest {
         assertEquals("Mexico 1 - Canada 2", completedSummary.get(0));
     }
 
+    /*
+    * Games are started and scores are updated, here we could see the one time update for
+    * the scores for every game, however when the real game is ongoing, there will be multiple
+    * times update of score are required.
+    * */
     @Test
     public void testGetSummary() throws InterruptedException {
         int scoreBoardId = scoreBoardService.createScoreBoard();
-        int gameId1 = scoreBoardService.startGame(scoreBoardId, mexico, canada);
+        int game1 = scoreBoardService.startGame(scoreBoardId, mexico, canada);
         Thread.sleep(500);
-        int gameId2 = scoreBoardService.startGame(scoreBoardId, spain, brazil);
+        int game2 = scoreBoardService.startGame(scoreBoardId, spain, brazil);
         Thread.sleep(500);
-        int gameId3 = scoreBoardService.startGame(scoreBoardId, germany, france);
+        int game3 = scoreBoardService.startGame(scoreBoardId, germany, france);
         Thread.sleep(500);
-        int gameId4 = scoreBoardService.startGame(scoreBoardId, uruguay, italy);
+        int game4 = scoreBoardService.startGame(scoreBoardId, uruguay, italy);
         Thread.sleep(500);
-        int gameId5 = scoreBoardService.startGame(scoreBoardId, argentina, australia);
+        int game5 = scoreBoardService.startGame(scoreBoardId, argentina, australia);
         Thread.sleep(500);
 
-        scoreBoardService.updateScore(scoreBoardId, gameId1, 0, 5);
-        scoreBoardService.updateScore(scoreBoardId, gameId2, 10, 2);
-        scoreBoardService.updateScore(scoreBoardId, gameId3, 2, 2);
-        scoreBoardService.updateScore(scoreBoardId, gameId4, 6, 6);
-        scoreBoardService.updateScore(scoreBoardId, gameId5, 3, 1);
+        scoreBoardService.updateScore(scoreBoardId, game1, 0, 5);
+        scoreBoardService.updateScore(scoreBoardId, game2, 10, 2);
+        scoreBoardService.updateScore(scoreBoardId, game3, 2, 2);
+        scoreBoardService.updateScore(scoreBoardId, game4, 6, 6);
+        scoreBoardService.updateScore(scoreBoardId, game5, 3, 1);
 
-        scoreBoardService.finishGame(scoreBoardId, gameId1);
-        scoreBoardService.finishGame(scoreBoardId, gameId2);
-        scoreBoardService.finishGame(scoreBoardId, gameId3);
-        scoreBoardService.finishGame(scoreBoardId, gameId4);
-        scoreBoardService.finishGame(scoreBoardId, gameId5);
+        scoreBoardService.finishGame(scoreBoardId, game1);
+        scoreBoardService.finishGame(scoreBoardId, game2);
+        scoreBoardService.finishGame(scoreBoardId, game3);
+        scoreBoardService.finishGame(scoreBoardId, game4);
+        scoreBoardService.finishGame(scoreBoardId, game5);
 
         List<String> completedSummary = scoreBoardService.getCompletedSummary(scoreBoardId);
         List<String> liveSummary = scoreBoardService.getLiveSummary(scoreBoardId);
