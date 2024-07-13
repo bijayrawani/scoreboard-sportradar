@@ -1,21 +1,25 @@
-# This is my simple ScoreBoard application to implement the football world cup event between multiple teams
+# Football world cup score board application
 
-## Create the datamodel objects as follows
+A live scoreboard application for tracking football World Cup games and scores.
+
+## Features
+- Start a game with initial score 0-0, capturing home team and away team.
+- Finish a game to remove it from the scoreboard.
+- Update score of a game with home team score and away team score.
+- Get a summary of games ordered by the most recently added, for those with the same total score.
+
+## Design of datamodel domains and service layer and testcases of the application
+#### 1. Datamodel domains
 - GameStatus
 - Game
 - Team
-## Create service which includes all the methods required for ScoreBoardOperations
-- ScoreBoardService with the following methods
-- startGame(int scoreBoardId, Team homeTeam, Team awayTeam);
-- finishGame(int scoreBoardId, int gameId);
-- updateScore(int scoreBoardId, int gameId, int homeScore, int awayScore);
-- getCompletedSummary(int scoreBoardId);
-- getLiveSummary(int scoreBoardId);
-## Write implementation class ScoreBoardServiceImpl to implement all the service contracts for ScoreBoardService interface
-
-## Write testcases to test all the contracts/operations for ScoreBoardService
-- ScoreBoardTest
-
-## Created this application as Maven Project, run the following commands from the project root directory to get it executed
-- To compile and create jar file "mvn clean install"
-- To run the testcases "mvn test"
+#### 2. Create service and their implementations classes
+- **ScoreBoardService** interface with the methods (startGame, finishGame, updateScore and getSummary)
+- **ScoreBoard** class - manages the game lifecycle and game data.
+- **ScoreBoardServiceImpl** class - implementation of ScoreBoardService.
+#### 3. Testcases for **ScoreBoardService**
+- **ScoreBoardTest** class
+## Build application as Maven Project, run the following commands from the project root directory
+- Set up POM.xml with all required dependencies  
+- To compile and create jar file **"mvn clean install"**
+- To run the testcases **"mvn test"**
