@@ -48,7 +48,7 @@ public class ScoreBoardTest {
     @Test
     public void testStartGame() {
         int scoreBoardId = scoreBoardService.createScoreBoard();
-        int gameId = scoreBoardService.startGame(scoreBoardId, mexico, canada);
+        scoreBoardService.startGame(scoreBoardId, mexico, canada);
         List<String> summary = scoreBoardService.getLiveSummary(scoreBoardId);
         assertEquals(1, summary.size()); // One live game
         assertEquals("Mexico 0 - Canada 0", summary.get(0));
